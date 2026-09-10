@@ -5,8 +5,7 @@ const Timeline = () => {
     <section className="page">
       <h1>Timeline</h1>
       <p className="page__lede">
-        Gantt-style project view. Dependencies and live task dates will come
-        from the tasks table.
+        Schedule, duration, and task dependencies for the current project.
       </p>
       <GanttChart />
     </section>

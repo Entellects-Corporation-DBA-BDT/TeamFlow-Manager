@@ -2,12 +2,13 @@
 --   psql -U postgres -d teamflow_db -f queries.sql
 
 SELECT
-    assignee,
+    u.full_name AS assignee,
     COUNT(*) AS open_tasks,
-    ROUND(AVG(progress), 1) AS avg_progress
-FROM tasks
-WHERE progress < 100
-GROUP BY assignee
+    ROUND(AVG(t.progress), 1) AS avg_progress
+FROM tasks t
+JOIN users u ON u.id = t.assignee_id
+WHERE t.progress < 100
+GROUP BY u.full_name
 ORDER BY open_tasks DESC;
 
 SELECT
@@ -44,6 +45,7 @@ SELECT
     s.starts_on,
     s.ends_on,
     COUNT(i.id)     AS issues_closed,
+    COALESCE(SUM(i.story_points), 0) AS story_points_closed,
     s.ends_on - s.starts_on AS sprint_days
 FROM sprints s
 LEFT JOIN issues i ON i.sprint_id = s.id AND i.status = 'done'

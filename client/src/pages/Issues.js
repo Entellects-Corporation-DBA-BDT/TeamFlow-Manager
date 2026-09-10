@@ -1,12 +1,36 @@
+import { useMemo, useState } from "react";
 import { issues } from "../data/mockWorkspace";
 
+const STATUSES = ["all", "backlog", "todo", "in_progress", "review", "done"];
+
 const Issues = () => {
+  const [status, setStatus] = useState("all");
+
+  const visible = useMemo(() => {
+    if (status === "all") return issues;
+    return issues.filter((issue) => issue.status === status);
+  }, [status]);
+
   return (
     <section className="page">
       <h1>Issues & backlog</h1>
       <p className="page__lede">
-        Bugs, stories, tasks, and epics. Create/edit and comments are next.
+        Track bugs, stories, and tasks across the workspace. Filter by workflow
+        status to focus the current queue.
       </p>
+      <label htmlFor="issue-status">Status</label>
+      <select
+        id="issue-status"
+        className="search-box"
+        value={status}
+        onChange={(event) => setStatus(event.target.value)}
+      >
+        {STATUSES.map((value) => (
+          <option key={value} value={value}>
+            {value.replace("_", " ")}
+          </option>
+        ))}
+      </select>
       <table className="issue-table">
         <thead>
           <tr>
@@ -20,7 +44,7 @@ const Issues = () => {
           </tr>
         </thead>
         <tbody>
-          {issues.map((issue) => (
+          {visible.map((issue) => (
             <tr key={issue.id}>
               <td>{issue.id}</td>
               <td>

@@ -14,14 +14,17 @@ const Login = () => {
     <div className="login">
       <form className="login__card" onSubmit={onSubmit}>
         <h1>TeamFlow Manager</h1>
-        <p>
-          Sign-in preview. Supabase Auth, roles, and entitlements are not
-          connected yet.
-        </p>
+        <p>Sign in with your work email to open your workspace.</p>
         <label htmlFor="email">Work email</label>
-        <input id="email" type="email" defaultValue="alex@teamflow.dev" />
+        <input id="email" type="email" name="email" required autoComplete="username" />
         <label htmlFor="password">Password</label>
-        <input id="password" type="password" defaultValue="preview" />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          required
+          autoComplete="current-password"
+        />
         <button type="submit">Continue to workspace</button>
         <p>
           <Link to="/">Back to product site</Link>

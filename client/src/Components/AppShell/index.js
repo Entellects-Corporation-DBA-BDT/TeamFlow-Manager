@@ -38,7 +38,7 @@ const AppShell = () => {
       </aside>
       <div className="shell__main">
         <header className="shell__top">
-          <span className="shell__badge">Preview · mock data</span>
+          <span className="shell__badge">{workspace.plan} plan</span>
           <div className="shell__alerts">
             {notifications.slice(0, 2).map((item) => (
               <span key={item.id}>{item.text}</span>

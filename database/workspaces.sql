@@ -22,7 +22,10 @@ CREATE TABLE users (
     email           VARCHAR(150) NOT NULL UNIQUE,
     role            VARCHAR(20) NOT NULL DEFAULT 'member'
                         CHECK (role IN ('owner', 'admin', 'member', 'viewer')),
+    is_active       BOOLEAN NOT NULL DEFAULT TRUE,
+    last_seen_at    TIMESTAMP,
     joined_at       TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE INDEX idx_users_workspace_id ON users(workspace_id);
+CREATE INDEX idx_users_workspace_active ON users(workspace_id) WHERE is_active = TRUE;

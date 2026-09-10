@@ -18,8 +18,12 @@ const Intelligence = () => {
   }, [query]);
 
   const runGateway = async () => {
-    const result = await requestInsight("status_summary", { query });
-    setGatewayNote(`${result.source}: ${result.note || "ok"}`);
+    try {
+      const result = await requestInsight("status_summary", { query });
+      setGatewayNote(`${result.source}: ${result.note || "ok"}`);
+    } catch (error) {
+      setGatewayNote(error instanceof Error ? error.message : "Gateway request failed");
+    }
   };
 
   return (
@@ -33,7 +37,7 @@ const Intelligence = () => {
         className="search-box"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
-        placeholder="Search issues in natural language (keyword fallback for now)"
+        placeholder="Search issues by key, title, or epic"
       />
       <button type="button" onClick={runGateway}>
         Refresh AI summary

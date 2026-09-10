@@ -16,6 +16,8 @@ CREATE TABLE notifications (
 );
 
 CREATE INDEX idx_notifications_user_id ON notifications(user_id);
+CREATE INDEX idx_notifications_unread ON notifications(user_id, created_at DESC)
+    WHERE is_read = FALSE;
 
 CREATE TABLE attachments (
     id              SERIAL PRIMARY KEY,
@@ -42,13 +44,14 @@ CREATE INDEX idx_audit_workspace_id ON audit_events(workspace_id);
 
 CREATE TABLE ai_prompts (
     id              SERIAL PRIMARY KEY,
-    slug            VARCHAR(80) NOT NULL UNIQUE,
+    slug            VARCHAR(80) NOT NULL,
     version         INTEGER NOT NULL DEFAULT 1,
     purpose         VARCHAR(120) NOT NULL,
     template        TEXT NOT NULL,
     model           VARCHAR(80) NOT NULL DEFAULT 'pending',
     is_active       BOOLEAN NOT NULL DEFAULT TRUE,
-    created_at      TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at      TIMESTAMP NOT NULL DEFAULT NOW(),
+    UNIQUE (slug, version)
 );
 
 CREATE TABLE ai_usage_logs (
