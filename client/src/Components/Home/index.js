@@ -23,7 +23,7 @@ const Home = () => {
           role-based collaboration, reporting, and a shared AI gateway.
         </p>
         <Link to="/login" className="hero__cta">
-          Open the workspace preview
+          Sign in to workspace
         </Link>
       </section>
 
@@ -95,8 +95,8 @@ const Home = () => {
       <section id="gantt" className="gantt-section">
         <h2>Timeline and Gantt-style visibility</h2>
         <p className="section-lede">
-          Preview of the current delivery track. Live data and drag-to-reschedule
-          are still in progress.
+          Delivery track for the current program increment, with percent complete
+          on each workstream.
         </p>
         <GanttChart />
       </section>

@@ -6,7 +6,7 @@ const Footer = () => {
         One place for project status, issues, tasks, collaboration, reporting, and AI-assisted intelligence.
       </p>
       <p className="footer__copy">
-        © {new Date().getFullYear()} TeamFlow Manager. Early development preview.
+        © {new Date().getFullYear()} TeamFlow Manager. All rights reserved.
       </p>
     </footer>
   );

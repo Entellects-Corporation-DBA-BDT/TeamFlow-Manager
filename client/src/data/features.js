@@ -77,8 +77,8 @@ export const valueProps = [
 
 export const ganttTasks = [
   { id: 1, name: "Sprint 12 planning", startWeek: 0, duration: 1, progress: 100, color: "#6366f1" },
-  { id: 2, name: "Auth & roles (WIP)", startWeek: 0, duration: 2, progress: 55, color: "#0ea5e9" },
-  { id: 3, name: "Issue tracker MVP", startWeek: 1, duration: 2, progress: 40, color: "#22c55e" },
-  { id: 4, name: "AI gateway stub", startWeek: 3, duration: 2, progress: 25, color: "#f59e0b" },
+  { id: 2, name: "Auth, roles & entitlements", startWeek: 0, duration: 2, progress: 55, color: "#0ea5e9" },
+  { id: 3, name: "Issue tracker & comments", startWeek: 1, duration: 2, progress: 40, color: "#22c55e" },
+  { id: 4, name: "AI gateway & usage logs", startWeek: 3, duration: 2, progress: 25, color: "#f59e0b" },
   { id: 5, name: "Reporting dashboards", startWeek: 4, duration: 2, progress: 10, color: "#ec4899" },
 ];
